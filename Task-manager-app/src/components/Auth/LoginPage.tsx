@@ -25,7 +25,13 @@ export const LoginPage = () => {
 
     const result = await signIn(email, password);
     if (result.success) {
-      navigate('/dashboard');
+      const redirect = localStorage.getItem('auth_redirect');
+      if (redirect) {
+        localStorage.removeItem('auth_redirect');
+        navigate(redirect);
+      } else {
+        navigate('/dashboard');
+      }
     } else {
       setError(result.error || 'Login failed');
     }

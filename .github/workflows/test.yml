@@ -7,7 +7,7 @@ on:
       - main
       - develop
     paths:
-      - 'xiandan-kanban-app/**'
+      - 'Task-manager-app/**'
       - '.github/workflows/test.yml'
   pull_request:
     branches:
@@ -15,7 +15,7 @@ on:
       - main
       - develop
     paths:
-      - 'xiandan-kanban-app/**'
+      - 'Task-manager-app/**'
       - '.github/workflows/test.yml'
   workflow_dispatch:
 
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: xiandan-kanban-app
+        working-directory: Task-manager-app
 
     strategy:
       matrix:
@@ -35,104 +35,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create .env file
-        run: |
-          echo "VITE_SUPABASE_URL=https://${{ secrets.SUPABASE_PROJECT_ID }}.supabase.co" >> .env
-          echo "VITE_SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
-          echo "VITE_SUPABASE_PUBLISHABLE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}" >> .env
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Run type checking
-        run: pnpm exec tsc --noEmit
+        run: npx tsc -b
 
       - name: Run linter
-        run: pnpm lint
+        run: npm run lint
 
       - name: Run unit tests
-        run: pnpm test:run
+        run: npm run test:run
 
-      - name: Generate coverage report
-        run: pnpm test:coverage
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          files: xiandan-kanban-app/coverage/coverage-final.json
-          flags: unittests
-          name: xiandan-kanban-app
-          fail_ci_if_error: false
-          token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Archive coverage report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: xiandan-kanban-app/coverage/
-          retention-days: 30
-
-      - name: Comment test results on PR
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const coveragePath = 'xiandan-kanban-app/coverage/coverage-summary.json';
-
-            if (fs.existsSync(coveragePath)) {
-              const coverage = JSON.parse(fs.readFileSync(coveragePath, 'utf8'));
-              const total = coverage.total;
-
-              const comment = `## 🧪 Test Results
-
-              ✅ All tests passed!
-
-              ### Coverage Summary
-              | Category | Percentage |
-              |----------|------------|
-              | Statements | ${total.statements.pct}% |
-              | Branches | ${total.branches.pct}% |
-              | Functions | ${total.functions.pct}% |
-              | Lines | ${total.lines.pct}% |
-
-              <details>
-              <summary>View detailed coverage</summary>
-
-              \`\`\`
-              ${JSON.stringify(total, null, 2)}
-              \`\`\`
-              </details>`;
-
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: comment
-              });
-            }
+      - name: Run build
+        run: npm run build

@@ -53,32 +53,32 @@
   - Global state: Zustand (user info, theme settings)
   - Server state: React Query (data fetching, caching)
   - Local state: useState + useReducer
-- **Data Fetching**: React Query + Supabase JS SDK
-- **Real-time Updates**: Supabase Realtime
+- **Data Fetching**: React Query + Server JS SDK
+- **Real-time Updates**: Server Realtime
 
 ## 3. Backend Technology Stack
 
 ### 3.1 Core Backend Services
-- **BaaS Platform**: Supabase (PostgreSQL + Real-time API + Auth + Storage)
-- **Edge Functions**: Supabase Edge Functions (Deno runtime)
+- **BaaS Platform**: Server (PostgreSQL + Real-time API + Auth + Storage)
+- **Edge Functions**: Server Edge Functions (Deno runtime)
 - **Database**: PostgreSQL 15+
-- **Cache**: Supabase built-in Redis (sessions, rate limiting)
+- **Cache**: Server built-in Redis (sessions, rate limiting)
 
 ### 3.2 Backend Architecture Design
 ```mermaid
 graph TB
     FrontendApp["Frontend App<br/>(React)"]
-    SupabaseAPI["Supabase API<br/>(Auto API)"]
+    ServerAPI["Server API<br/>(Auto API)"]
     PostgreSQL["PostgreSQL<br/>(Main DB)"]
     EdgeFunctions["Edge Functions<br/>(Business Logic)"]
-    SupabaseAuth["Supabase Auth<br/>(Auth & AuthZ)"]
-    SupabaseRealtime["Supabase<br/>Realtime"]
+    AuthModule["Server Auth<br/>(Auth & AuthZ)"]
+    RealtimeModule["Server<br/>Realtime"]
     
-    FrontendApp <--> SupabaseAPI
-    SupabaseAPI <--> PostgreSQL
+    FrontendApp <--> ServerAPI
+    ServerAPI <--> PostgreSQL
     FrontendApp --> EdgeFunctions
-    FrontendApp --> SupabaseAuth
-    FrontendApp --> SupabaseRealtime
+    FrontendApp --> AuthModule
+    FrontendApp --> RealtimeModule
 ```
 
 ### 3.3 Database Design
@@ -99,10 +99,10 @@ graph TB
 - Users to Cards: Many-to-many relationship (assignment, following)
 
 ### 3.4 API Design
-- **RESTful API**: Supabase auto-generates CRUD interfaces
+- **RESTful API**: Server auto-generates CRUD interfaces
 - **Real-time API**: WebSocket connections support real-time updates
 - **Custom API**: Edge Functions handle complex business logic
-- **File API**: Supabase Storage handles file uploads
+- **File API**: Server Storage handles file uploads
 
 ## 4. Email Service Integration Plan
 
@@ -158,16 +158,16 @@ src/
 └── config/             # Configuration files
 ```
 
-### 5.2 Backend Project Structure (Supabase)
+### 5.2 Backend Project Structure (Server)
 ```
-supabase/
+Server/
 ├── functions/          # Edge Functions
 │   ├── send-email/     # Email sending
 │   ├── notifications/  # Notification handling
 │   └── analytics/      # Data analysis
 ├── migrations/         # Database migrations
 ├── seed.sql           # Test data
-└── config.toml        # Supabase configuration
+└── config.toml        # Server configuration
 ```
 
 ### 5.3 Naming Conventions
@@ -247,7 +247,7 @@ supabase/
 ### 7.2 Backend Performance Optimization
 - **Database Optimization**:
   - Query optimization: Use EXPLAIN to analyze query plans
-  - Connection pool: Supabase built-in connection pool management
+  - Connection pool: Server built-in connection pool management
   - Batch operations: Reduce database query frequency
 
 - **API Optimization**:
@@ -299,7 +299,7 @@ supabase/
 
 ### 9.1 Deployment Architecture
 - **Frontend Deployment**: Vercel / Netlify
-- **Backend Services**: Supabase Cloud
+- **Backend Services**: Server Cloud
 - **CDN Acceleration**: Global CDN nodes
 - **Domain Configuration**: Custom domain + SSL certificate
 
@@ -317,11 +317,11 @@ Git Push → GitHub Actions → Build and Test → Deploy Preview → Production
 ## 10. Technology Selection Summary
 
 ### 10.1 Advantages
-- **Development Efficiency**: Supabase provides complete BaaS solution, reducing backend development workload
+- **Development Efficiency**: Server provides complete BaaS solution, reducing backend development workload
 - **User Experience**: React + Tailwind CSS ensures modern, responsive user interface
 - **Scalability**: Modular architecture supports feature extension
 - **Maintainability**: TypeScript provides type safety, reducing runtime errors
-- **Cost Control**: Supabase pay-per-use pricing, suitable for small teams
+- **Cost Control**: Server pay-per-use pricing, suitable for small teams
 
 ### 10.2 Risks and Mitigation
 - **Vendor Dependency**: Prepare backup solutions to reduce vendor lock-in risk

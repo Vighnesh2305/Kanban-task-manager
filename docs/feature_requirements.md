@@ -26,16 +26,16 @@
 
 ### Technical Architecture
 - Frontend: React + TypeScript + Tailwind CSS + DnD Kit
-- Backend: Supabase (PostgreSQL + Auth + Edge Functions)
-- Deployment: Vercel + Supabase Cloud Services
-- Email Service: Supabase Edge Functions + Third-party Email API
+- Backend: Server (PostgreSQL + Auth + Edge Functions)
+- Deployment: Vercel + Server Cloud Services
+- Email Service: Server Edge Functions + Third-party Email API
 
 ---
 
 ## 1. User Authentication System
 
 ### Feature Description
-Based on Supabase's email authentication system, supporting user registration, login, password reset, and other functions.
+Based on Server's email authentication system, supporting user registration, login, password reset, and other functions.
 
 ### Business Process Diagram
 ```mermaid
@@ -69,7 +69,7 @@ flowchart TD
   - Confirm password (required, must match password)
 - **Business Logic**:
   1. Form validation (email format, password strength)
-  2. Call Supabase registration interface
+  2. Call Server registration interface
   3. Send email verification link
   4. Wait for user to click verification link
   5. Create default board after successful verification
@@ -83,7 +83,7 @@ flowchart TD
   - Password (required)
 - **Business Logic**:
   1. Form validation
-  2. Call Supabase login interface
+  2. Call Server login interface
   3. Get access token and refresh token
   4. Store token in local storage
   5. Jump to homepage
@@ -94,7 +94,7 @@ flowchart TD
 - **Input Requirements**: Email address
 - **Business Logic**:
   1. Input email address
-  2. Call Supabase password reset interface
+  2. Call Server password reset interface
   3. Send password reset email
   4. Link in email points to reset page
   5. Set new password
@@ -112,7 +112,7 @@ flowchart TD
 
 ### Data Model
 ```sql
--- User Information Table (Supabase Auth Extension)
+-- User Information Table (Server Auth Extension)
 CREATE TABLE user_profiles (
   id UUID REFERENCES auth.users(id) PRIMARY KEY,
   email TEXT NOT NULL,
@@ -508,7 +508,7 @@ flowchart TD
 
 #### 4.2 Scheduled Reminder Tasks
 - **Task Scheduling Mechanism**:
-  - Use Supabase Edge Functions for scheduled tasks
+  - Use Server Edge Functions for scheduled tasks
   - Execute reminder check every 15 minutes
   - Database query for upcoming reminders
 
@@ -559,7 +559,7 @@ flowchart TD
 ```typescript
 // edge-function/email-reminders.ts
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { createClient } from 'shared/db-client'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -573,13 +573,13 @@ serve(async (req) => {
   }
 
   try {
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+    const Server = createClient(
+      Deno.env.get('Server_URL') ?? '',
+      Deno.env.get('Server_SERVICE_ROLE_KEY') ?? ''
     )
 
     // Query pending reminders
-    const { data: reminders } = await supabase
+    const { data: reminders } = await Server
       .from('reminders')
       .select(`
         *,
@@ -735,7 +735,7 @@ ORDER BY date;
 - Real-time data validation and updates
 
 #### 5.3 Real-time Updates
-- Use Supabase Realtime to subscribe to data changes
+- Use Server Realtime to subscribe to data changes
 - Real-time update of statistics charts
 - WebSocket push update notifications
 
@@ -829,7 +829,7 @@ function KanbanBoard() {
 
 ### 6.2 Backend Technology Stack
 
-#### Supabase Services
+#### Server Services
 - **PostgreSQL**: Main database
 - **Auth**: User authentication
 - **Realtime**: Real-time data synchronization
@@ -839,9 +839,9 @@ function KanbanBoard() {
 #### Database Design
 ```sql
 -- Enable real-time subscriptions
-ALTER PUBLICATION supabase_realtime ADD TABLE boards;
-ALTER PUBLICATION supabase_realtime ADD TABLE tasks;
-ALTER PUBLICATION supabase_realtime ADD TABLE columns;
+ALTER PUBLICATION app_realtime ADD TABLE boards;
+ALTER PUBLICATION app_realtime ADD TABLE tasks;
+ALTER PUBLICATION app_realtime ADD TABLE columns;
 
 -- Create indexes to optimize queries
 CREATE INDEX idx_tasks_board_id ON tasks(board_id);
@@ -872,13 +872,13 @@ CREATE POLICY "Board members can view boards" ON boards
 ### 6.3 Deployment Plan
 
 #### Development Environment
-- **Local Development**: Supabase local instance + Vite dev server
+- **Local Development**: Server local instance + Vite dev server
 - **Code Management**: Git + GitHub
 - **Development Tools**: VSCode + related extensions
 
 #### Production Environment
 - **Frontend Deployment**: Vercel
-- **Backend Services**: Supabase Cloud
+- **Backend Services**: Server Cloud
 - **Domain**: Custom domain configuration
 - **CDN**: Vercel automatic CDN
 

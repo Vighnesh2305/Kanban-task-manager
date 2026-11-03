@@ -106,7 +106,7 @@ For pull requests, the workflow automatically posts a comment with:
 The README displays a real-time status badge:
 
 ```markdown
-[![Unit Tests](https://github.com/zhouhao/kanban-supabase/actions/workflows/test.yml/badge.svg)](https://github.com/zhouhao/kanban-supabase/actions/workflows/test.yml)
+[![Unit Tests](https://github.com/zhouhao/kanban-task-manager/actions/workflows/test.yml/badge.svg)](https://github.com/zhouhao/kanban-task-manager/actions/workflows/test.yml)
 ```
 
 ## Configuration
@@ -121,7 +121,7 @@ Configure these secrets in GitHub repository settings:
 
 ### Environment Variables
 
-No environment variables required for CI. Tests run with mocked Supabase client.
+No environment variables required for CI. Tests run with local standalone test mocks.
 
 ## Local CI Simulation
 
@@ -165,7 +165,7 @@ pnpm test:coverage        # Coverage
 After setup, add to README:
 
 ```markdown
-[![codecov](https://codecov.io/gh/zhouhao/kanban-supabase/branch/master/graph/badge.svg)](https://codecov.io/gh/zhouhao/kanban-supabase)
+[![codecov](https://codecov.io/gh/zhouhao/kanban-task-manager/branch/master/graph/badge.svg)](https://codecov.io/gh/zhouhao/kanban-task-manager)
 ```
 
 ## Workflow Optimization

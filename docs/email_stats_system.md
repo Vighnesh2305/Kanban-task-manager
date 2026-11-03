@@ -2,7 +2,7 @@
 
 ## 1. System Overview
 
-Xiandan Kanban board application's email reminders and statistics system aims to improve team collaboration efficiency and project management quality through automated email notifications and data analysis. The system will be built based on the Supabase platform, combining Cron Jobs scheduled tasks, email service integration, and data visualization components.
+Xiandan Kanban board application's email reminders and statistics system aims to improve team collaboration efficiency and project management quality through automated email notifications and data analysis. The system will be built based on the Server platform, combining Cron Jobs scheduled tasks, email service integration, and data visualization components.
 
 ### 1.1 Core Functions
 - Automated email reminders (task due dates, status changes, priority reminders)
@@ -20,7 +20,7 @@ graph LR
         Config[Config Management]
     end
     
-    subgraph Supabase["Supabase"]
+    subgraph Server["Server"]
         PostgreSQL[PostgreSQL]
         CronJobs[Cron Jobs]
         EdgeFunctions[Edge Functions]
@@ -32,11 +32,11 @@ graph LR
         MonitoringService[Monitoring Service]
     end
     
-    Frontend <--> Supabase
-    Supabase <--> External
+    Frontend <--> Server
+    Server <--> External
 ```
 
-## 2. Scheduled Task Implementation Plan (Supabase Cron Jobs)
+## 2. Scheduled Task Implementation Plan (Server Cron Jobs)
 
 ### 2.1 Scheduled Task Strategy
 
@@ -68,9 +68,9 @@ graph LR
 
 #### 2.2.1 Create Scheduled Task Edge Function
 ```typescript
-// supabase/functions/scheduled-tasks/index.ts
+// server/functions/scheduled-tasks/index.ts
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { createClient } from 'shared/db-client'
 
 serve(async (req) => {
   const corsHeaders = {
@@ -85,23 +85,23 @@ serve(async (req) => {
 
   try {
     const { task_type } = await req.json()
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    const Server = createClient(
+      Deno.env.get('Server_URL')!,
+      Deno.env.get('Server_SERVICE_ROLE_KEY')!
     )
 
     switch (task_type) {
       case 'daily_reminder':
-        await sendDailyReminders(supabase)
+        await sendDailyReminders(Server)
         break
       case 'weekly_report':
-        await generateWeeklyReport(supabase)
+        await generateWeeklyReport(Server)
         break
       case 'monthly_summary':
-        await generateMonthlySummary(supabase)
+        await generateMonthlySummary(Server)
         break
       case 'hourly_stats':
-        await updateHourlyStats(supabase)
+        await updateHourlyStats(Server)
         break
       default:
         throw new Error(`Unknown task type: ${task_type}`)
@@ -119,9 +119,9 @@ serve(async (req) => {
   }
 })
 
-async function sendDailyReminders(supabase: any) {
+async function sendDailyReminders(Server: any) {
   // Get today's due tasks
-  const { data: tasks } = await supabase
+  const { data: tasks } = await Server
     .from('tasks')
     .select(`
       id, title, description, due_date, status, priority,
@@ -145,7 +145,7 @@ SELECT cron.schedule(
   'daily-task-reminders',
   '0 9 * * 1-5',
   'SELECT net.http_post(
-    url := ''https://your-project.supabase.co/functions/v1/scheduled-tasks'',
+    url := ''https://your-project.Server.co/functions/v1/scheduled-tasks'',
     headers := ''{"Content-Type": "application/json", "Authorization": "Bearer YOUR_ANON_KEY"}''::jsonb,
     body := ''{"task_type": "daily_reminder"}''::jsonb
   );'
@@ -156,7 +156,7 @@ SELECT cron.schedule(
   'weekly-reports',
   '0 17 * * 5',
   'SELECT net.http_post(
-    url := ''https://your-project.supabase.co/functions/v1/scheduled-tasks'',
+    url := ''https://your-project.Server.co/functions/v1/scheduled-tasks'',
     headers := ''{"Content-Type": "application/json", "Authorization": "Bearer YOUR_ANON_KEY"}''::jsonb,
     body := ''{"task_type": "weekly_report"}''::jsonb
   );'
@@ -167,7 +167,7 @@ SELECT cron.schedule(
   'monthly-summaries',
   '0 23 L * *',
   'SELECT net.http_post(
-    url := ''https://your-project.supabase.co/functions/v1/scheduled-tasks'',
+    url := ''https://your-project.Server.co/functions/v1/scheduled-tasks'',
     headers := ''{"Content-Type": "application/json", "Authorization": "Bearer YOUR_ANON_KEY"}''::jsonb,
     body := ''{"task_type": "monthly_summary"}''::jsonb
   );'
@@ -178,7 +178,7 @@ SELECT cron.schedule(
   'hourly-stats',
   '0 * * * *',
   'SELECT net.http_post(
-    url := ''https://your-project.supabase.co/functions/v1/scheduled-tasks'',
+    url := ''https://your-project.Server.co/functions/v1/scheduled-tasks'',
     headers := ''{"Content-Type": "application/json", "Authorization": "Bearer YOUR_ANON_KEY"}''::jsonb,
     body := ''{"task_type": "hourly_stats"}''::jsonb
   );'
@@ -210,7 +210,7 @@ interface EmailTemplate {
 
 #### 3.1.2 Email Sending Service
 ```typescript
-// supabase/functions/send-email/index.ts
+// server/functions/send-email/index.ts
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 serve(async (req) => {
@@ -695,9 +695,9 @@ $$ LANGUAGE plpgsql;
 
 #### 4.2.1 Statistics API Edge Function
 ```typescript
-// supabase/functions/stats-api/index.ts
+// server/functions/stats-api/index.ts
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { createClient } from 'shared/db-client'
 
 serve(async (req) => {
   const corsHeaders = {
@@ -713,28 +713,28 @@ serve(async (req) => {
   try {
     const url = new URL(req.url)
     const endpoint = url.pathname.split('/').pop()
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    const Server = createClient(
+      Deno.env.get('Server_URL')!,
+      Deno.env.get('Server_SERVICE_ROLE_KEY')!
     )
 
     let result: any
 
     switch (endpoint) {
       case 'dashboard':
-        result = await getDashboardStats(supabase)
+        result = await getDashboardStats(Server)
         break
       case 'tasks':
-        result = await getTaskStatistics(supabase, url.searchParams)
+        result = await getTaskStatistics(Server, url.searchParams)
         break
       case 'team':
-        result = await getTeamPerformance(supabase, url.searchParams)
+        result = await getTeamPerformance(Server, url.searchParams)
         break
       case 'projects':
-        result = await getProjectHealth(supabase, url.searchParams)
+        result = await getProjectHealth(Server, url.searchParams)
         break
       case 'trends':
-        result = await getTrendAnalysis(supabase, url.searchParams)
+        result = await getTrendAnalysis(Server, url.searchParams)
         break
       default:
         throw new Error('Unknown endpoint')
@@ -752,8 +752,8 @@ serve(async (req) => {
   }
 })
 
-async function getDashboardStats(supabase: any) {
-  const { data: projects } = await supabase
+async function getDashboardStats(Server: any) {
+  const { data: projects } = await Server
     .from('projects')
     .select('id, name')
   
@@ -775,7 +775,7 @@ async function getDashboardStats(supabase: any) {
 
   if (projects) {
     for (const project of projects) {
-      const { data: stats } = await supabase
+      const { data: stats } = await Server
         .rpc('get_task_statistics', {
           p_project_id: project.id,
           p_start_date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],

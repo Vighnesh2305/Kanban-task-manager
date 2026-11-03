@@ -36,22 +36,22 @@ To ensure development efficiency, system performance, and user experience, we ha
 
 ### 2.1 Overall Technical Architecture
 
-Adopts a modern web application architecture with front-end and back-end separation. The back-end service is completely based on the Supabase BaaS platform, and the front-end interacts with the back-end through APIs.
+Adopts a modern web application architecture with front-end and back-end separation. The back-end service is completely based on the custom backend/storage platform, and the front-end interacts with the back-end through APIs.
 
 ```mermaid
 graph TB
     Frontend["Frontend<br/>(React)"]
-    SupabaseAPI["Supabase API/SDK"]
+    BackendAPI["Independent Backend API/SDK"]
     PostgreSQL["PostgreSQL DB"]
     EdgeFunctions["Edge Functions<br/>(Business Logic)"]
-    SupabaseAuth["Supabase Auth<br/>(User Auth)"]
-    SupabaseRealtime["Supabase Realtime<br/>(Real-time Sync)"]
+    AuthService["Independent Backend Auth<br/>(User Auth)"]
+    RealtimeService["Independent Backend Realtime<br/>(Real-time Sync)"]
     
-    Frontend <--> SupabaseAPI
-    SupabaseAPI <--> PostgreSQL
+    Frontend <--> BackendAPI
+    BackendAPI <--> PostgreSQL
     Frontend --> EdgeFunctions
-    SupabaseAPI --> SupabaseAuth
-    PostgreSQL --> SupabaseRealtime
+    BackendAPI --> AuthService
+    PostgreSQL --> RealtimeService
 ```
 
 ### 2.2 Frontend Technology Stack
@@ -67,20 +67,20 @@ graph TB
 - **Chart Components**: **Recharts** for data visualization.
 - **Code Standards**: ESLint, Prettier, Husky, Conventional Commits.
 
-### 2.3 Backend Technology Stack (Supabase)
+### 2.3 Backend Technology Stack (Independent Backend)
 
-- **BaaS Platform**: **Supabase** as the core backend.
+- **BaaS Platform**: **Independent Backend** as the core backend.
 - **Database**: **PostgreSQL 15+**, utilizing its powerful query capabilities and RLS (Row Level Security) features.
-- **Authentication Service**: **Supabase Auth**, supporting email/password, OAuth third-party login, and JWT management.
-- **Real-time Sync**: **Supabase Realtime**, achieving real-time updates of kanban data through WebSocket.
-- **Serverless Functions**: **Supabase Edge Functions** (Deno runtime), used for handling complex business logic such as email sending, scheduled tasks, and statistical calculations.
-- **File Storage**: **Supabase Storage**, used for storing user avatars, task attachments, and other files.
-- **Scheduled Tasks**: **Supabase Cron Jobs**, used for scheduling periodic tasks (such as sending weekly reports, updating statistics).
+- **Authentication Service**: **Independent Backend Auth**, supporting email/password, OAuth third-party login, and JWT management.
+- **Real-time Sync**: **Independent Backend Realtime**, achieving real-time updates of kanban data through WebSocket.
+- **Serverless Functions**: **Independent Backend Edge Functions** (Deno runtime), used for handling complex business logic such as email sending, scheduled tasks, and statistical calculations.
+- **File Storage**: **Independent Backend Storage**, used for storing user avatars, task attachments, and other files.
+- **Scheduled Tasks**: **Independent Backend Cron Jobs**, used for scheduling periodic tasks (such as sending weekly reports, updating statistics).
 
 ### 2.4 Deployment and Operations
 
 - **Frontend Deployment**: **Vercel** or **Netlify**, achieving CI/CD automated deployment and global CDN acceleration.
-- **Backend Services**: **Supabase Cloud**, providing stable and scalable backend infrastructure.
+- **Backend Services**: **Independent Backend Cloud**, providing stable and scalable backend infrastructure.
 
 ---
 
@@ -88,7 +88,7 @@ graph TB
 
 ### 3.1 User Authentication System
 
-Based on Supabase Auth implementation, providing secure and convenient user authentication flow.
+Based on Independent Backend Auth implementation, providing secure and convenient user authentication flow.
 
 - **User Registration**:
     - Supports email and password registration.
@@ -139,7 +139,7 @@ Tasks are the core elements of the kanban, providing rich management functions a
     - Supports multiple roles (such as owner, admin, member, observer).
     - Role-based permission control ensures data isolation at the database level through PostgreSQL's RLS policies.
 - **Real-time Sync**:
-    - Any modifications to the kanban by members (such as task movement, content updates) are synchronized to all online members in real-time through Supabase Realtime.
+    - Any modifications to the kanban by members (such as task movement, content updates) are synchronized to all online members in real-time through Independent Backend Realtime.
 - **Comments and @ Notifications**:
     - Users can post comments under tasks.
     - Supports `@` specific members in comments, who will receive email and in-app notifications.
@@ -177,7 +177,7 @@ graph TB
 ### 4.2 Main Table Definitions
 
 #### `users` (User Information Table)
-Stores basic authentication information of users, managed by Supabase Auth.
+Stores basic authentication information of users, managed by Independent Backend Auth.
 
 #### `user_profiles` (User Profile Table)
 ```sql
@@ -282,7 +282,7 @@ CREATE TABLE reminders (
 
 ## 5. Email Reminder Process Design
 
-Implement a highly automated email reminder system through Supabase Cron Jobs and Edge Functions.
+Implement a highly automated email reminder system through Independent Backend Cron Jobs and Edge Functions.
 
 ### 5.1 Overall Process
 
@@ -345,7 +345,7 @@ The statistical panel is the core of data-driven decision-making and will implem
     - **Pie Chart/Donut Chart**: Used to display task priority distribution.
     - **Radar Chart**: Used for comprehensive evaluation of team members' performance across multiple dimensions such as workload, efficiency, and completion rate.
 - **Data Sources**:
-    - Front-end directly calls PostgreSQL **database views (VIEW)** or **functions (FUNCTION)** created in Supabase to obtain pre-calculated statistical data for improved performance.
+    - Front-end directly calls PostgreSQL **database views (VIEW)** or **functions (FUNCTION)** created in Independent Backend to obtain pre-calculated statistical data for improved performance.
 
 ---
 
@@ -433,9 +433,9 @@ function KanbanColumn({ id, children }) {
 ### 8.2 Edge Function Example (Sending Email)
 
 ```typescript
-// supabase/functions/send-email/index.ts
+// Independent Backend/functions/send-email/index.ts
 import { serve } from 'https://deno.land/std/http/server.ts';
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createClient } from 'https://esm.sh/@Independent Backend/Independent Backend-js@2';
 
 serve(async (req) => {
   try {

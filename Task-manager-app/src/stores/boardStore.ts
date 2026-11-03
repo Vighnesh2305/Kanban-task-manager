@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { Board, Column } from '../lib/types';
 import { localDb } from '../lib/storage';
+import { workspaceRealtime } from '../lib/realtime';
 
 export type { Board, Column };
 
@@ -10,6 +11,7 @@ interface BoardState {
   loading: boolean;
   error: string | null;
   columnsChannel: any | null;
+  realtimeUnsub: (() => void) | null;
 
   // Board CRUD
   fetchBoards: (userId: string) => Promise<void>;
@@ -35,6 +37,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   loading: false,
   error: null,
   columnsChannel: null,
+  realtimeUnsub: null,
 
   fetchBoards: async (userId: string) => {
     set({ loading: true, error: null });
@@ -129,9 +132,9 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     set({ loading: true, error: null });
     try {
       const data = localDb.createColumn(column);
-      set(state => ({ 
+      set(state => ({
         columns: [...state.columns, data],
-        loading: false 
+        loading: false
       }));
       return data;
     } catch (error: any) {
@@ -170,11 +173,32 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     }
   },
 
-  subscribeToColumns: (_boardId: string) => {
-    // Local storage events can optionally be listened to for cross-tab sync
+  subscribeToColumns: (boardId: string) => {
+    if (get().realtimeUnsub) {
+      get().realtimeUnsub!();
+    }
+
+    const unsub = workspaceRealtime.subscribe('*', (event: { type: string; payload: any }) => {
+      const { type } = event;
+      if (
+        type === 'COLUMN_CREATED' ||
+        type === 'COLUMN_UPDATED' ||
+        type === 'COLUMN_DELETED' ||
+        type === 'STORAGE_CHANGE'
+      ) {
+        const cols = localDb.getColumns(boardId);
+        set({ columns: cols });
+      }
+    });
+
+    set({ realtimeUnsub: unsub });
   },
 
   unsubscribeFromColumns: () => {
-    // No-op for local storage
+    const { realtimeUnsub } = get();
+    if (realtimeUnsub) {
+      realtimeUnsub();
+      set({ realtimeUnsub: null });
+    }
   },
 }));

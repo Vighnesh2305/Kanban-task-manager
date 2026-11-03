@@ -1,0 +1,709 @@
+{
+  "kanban_registered_accounts": [
+    {
+      "id": "vighneshkadam05gmailcom",
+      "email": "vighneshkadam05@gmail.com",
+      "full_name": "vighneshkadam05",
+      "created_at": "2026-11-02T20:29:37.731Z"
+    },
+    {
+      "id": "khandelwalkushal2509gmailcom",
+      "email": "khandelwalkushal2509@gmail.com",
+      "full_name": "kushal",
+      "created_at": "2026-11-03T06:12:25.034Z"
+    }
+  ],
+  "kanban_boards": [
+    {
+      "id": "id_txnua2smvzqw1lc",
+      "user_id": "vighneshkadam05gmailcom",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "name": "xyz Board",
+      "description": "Collaborative To-Do list for xyz",
+      "color": "#0087FF",
+      "created_at": "2026-11-02T21:02:23.759Z",
+      "updated_at": "2026-11-02T21:02:23.759Z"
+    },
+    {
+      "id": "id_4gvs2je0vmvzppwlq",
+      "user_id": "vighneshkadam05gmailcom",
+      "name": "Project Roadmap",
+      "description": "Manage development sprints, milestones, and task deliverables",
+      "color": "#3B82F6",
+      "created_at": "2026-11-02T20:29:37.742Z",
+      "updated_at": "2026-11-02T20:29:37.742Z"
+    }
+  ],
+  "kanban_columns": [
+    {
+      "id": "id_iknmkgn9smvzppwlq",
+      "board_id": "id_4gvs2je0vmvzppwlq",
+      "name": "To Do",
+      "color": "#3B82F6",
+      "position": 0,
+      "created_at": "2026-11-02T20:29:37.742Z",
+      "updated_at": "2026-11-02T20:29:37.742Z"
+    },
+    {
+      "id": "id_ui42bj7n1mvzppwlq",
+      "board_id": "id_4gvs2je0vmvzppwlq",
+      "name": "In Progress",
+      "color": "#F59E0B",
+      "position": 1,
+      "created_at": "2026-11-02T20:29:37.742Z",
+      "updated_at": "2026-11-02T20:29:37.742Z"
+    },
+    {
+      "id": "id_7t8qpt1n3mvzppwlq",
+      "board_id": "id_4gvs2je0vmvzppwlq",
+      "name": "Done",
+      "color": "#10B981",
+      "position": 2,
+      "created_at": "2026-11-02T20:29:37.742Z",
+      "updated_at": "2026-11-02T20:29:37.742Z"
+    },
+    {
+      "id": "id_b8ocstzmvzqw1lc",
+      "board_id": "id_txnua2smvzqw1lc",
+      "name": "To Do",
+      "color": "#3B82F6",
+      "position": 0,
+      "created_at": "2026-11-02T21:02:23.759Z",
+      "updated_at": "2026-11-02T21:02:23.759Z"
+    },
+    {
+      "id": "id_btb2lg4mvzqw1lc",
+      "board_id": "id_txnua2smvzqw1lc",
+      "name": "In Progress",
+      "color": "#F59E0B",
+      "position": 1,
+      "created_at": "2026-11-02T21:02:23.759Z",
+      "updated_at": "2026-11-02T21:02:23.759Z"
+    },
+    {
+      "id": "id_h73c8ujmvzqw1lc",
+      "board_id": "id_txnua2smvzqw1lc",
+      "name": "Done",
+      "color": "#10B981",
+      "position": 3,
+      "created_at": "2026-11-02T21:02:23.759Z",
+      "updated_at": "2026-11-02T21:02:23.759Z"
+    }
+  ],
+  "kanban_tasks": [
+    {
+      "id": "id_i78g6p0w1mvzppwlq",
+      "board_id": "id_4gvs2je0vmvzppwlq",
+      "column_id": "id_iknmkgn9smvzppwlq",
+      "title": "Design high-converting Landing Page",
+      "description": "Create responsive mockups for the product showcase and dashboard preview.",
+      "priority": "high",
+      "due_date": "2026-11-05T20:29:37.742Z",
+      "start_date": "2026-11-02T20:29:37.742Z",
+      "assignee_id": "vighneshkadam05gmailcom",
+      "creator_id": "vighneshkadam05gmailcom",
+      "position": 0,
+      "is_completed": false,
+      "is_deleted": false,
+      "completed_at": null,
+      "created_at": "2026-11-02T20:29:37.742Z",
+      "updated_at": "2026-11-02T20:29:37.742Z"
+    },
+    {
+      "id": "id_7ol83ui63mvzppwlq",
+      "board_id": "id_4gvs2je0vmvzppwlq",
+      "column_id": "id_iknmkgn9smvzppwlq",
+      "title": "Write automated unit & integration tests",
+      "description": "Cover all critical drag-and-drop state transitions and localStorage persistence.",
+      "priority": "medium",
+      "due_date": "2026-11-07T20:29:37.742Z",
+      "start_date": "2026-11-02T20:29:37.742Z",
+      "assignee_id": "vighneshkadam05gmailcom",
+      "creator_id": "vighneshkadam05gmailcom",
+      "position": 1,
+      "is_completed": false,
+      "is_deleted": false,
+      "completed_at": null,
+      "created_at": "2026-11-02T20:29:37.742Z",
+      "updated_at": "2026-11-02T20:29:37.742Z"
+    },
+    {
+      "id": "id_9m8z6t6jnmvzppwlq",
+      "board_id": "id_4gvs2je0vmvzppwlq",
+      "column_id": "id_ui42bj7n1mvzppwlq",
+      "title": "Optimize offline local storage data layer",
+      "description": "Replace backend reliance with instant, synchronized client storage.",
+      "priority": "urgent",
+      "due_date": "2026-11-04T20:29:37.742Z",
+      "start_date": "2026-11-02T20:29:37.742Z",
+      "assignee_id": "vighneshkadam05gmailcom",
+      "creator_id": "vighneshkadam05gmailcom",
+      "position": 0,
+      "is_completed": false,
+      "is_deleted": false,
+      "completed_at": null,
+      "created_at": "2026-11-02T20:29:37.742Z",
+      "updated_at": "2026-11-02T20:29:37.742Z"
+    },
+    {
+      "id": "id_hdditb4oomvzppwlq",
+      "board_id": "id_4gvs2je0vmvzppwlq",
+      "column_id": "id_7t8qpt1n3mvzppwlq",
+      "title": "Initialize repository structure",
+      "description": "Set up Vite, React, TypeScript, and shadcn UI component library.",
+      "priority": "low",
+      "due_date": "2026-11-02T20:29:37.742Z",
+      "start_date": "2026-11-02T20:29:37.742Z",
+      "assignee_id": "vighneshkadam05gmailcom",
+      "creator_id": "vighneshkadam05gmailcom",
+      "position": 0,
+      "is_completed": true,
+      "is_deleted": false,
+      "completed_at": "2026-11-02T20:29:37.742Z",
+      "created_at": "2026-11-02T20:29:37.742Z",
+      "updated_at": "2026-11-02T20:29:37.742Z"
+    },
+    {
+      "board_id": "id_txnua2smvzqw1lc",
+      "column_id": "id_b8ocstzmvzqw1lc",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "title": "bvbnv",
+      "description": "xbvcv",
+      "priority": "medium",
+      "due_date": "2026-11-01T00:00:00.000Z",
+      "start_date": "2026-11-03T07:48:10.357Z",
+      "assignee_id": "vighneshkadam05gmailcom",
+      "assignee_name": "vighneshkadam05",
+      "creator_id": "khandelwalkushal2509gmailcom",
+      "creator_name": "kushal",
+      "position": 0,
+      "id": "id_9wqodeqmw0dyinp",
+      "is_completed": false,
+      "is_deleted": true,
+      "completed_at": null,
+      "created_at": "2026-11-03T07:48:10.357Z",
+      "updated_at": "2026-11-03T07:48:22.758Z"
+    },
+    {
+      "board_id": "id_txnua2smvzqw1lc",
+      "column_id": "id_b8ocstzmvzqw1lc",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "title": "jhfkjdf",
+      "description": "kdsljfj",
+      "priority": "medium",
+      "due_date": "2026-11-04T00:00:00.000Z",
+      "start_date": "2026-11-03T07:48:38.041Z",
+      "assignee_id": "vighneshkadam05gmailcom",
+      "assignee_name": "vighneshkadam05",
+      "creator_id": "khandelwalkushal2509gmailcom",
+      "creator_name": "kushal",
+      "position": 0,
+      "id": "id_vdl766smw0dz40p",
+      "is_completed": false,
+      "is_deleted": true,
+      "completed_at": null,
+      "created_at": "2026-11-03T07:48:38.041Z",
+      "updated_at": "2026-11-03T07:51:16.790Z"
+    }
+  ],
+  "kanban_workspaces": [
+    {
+      "id": "id_h68hx9hmvzqw1lb",
+      "name": "xyz",
+      "description": "NA",
+      "owner_id": "vighneshkadam05gmailcom",
+      "owner_name": "vighneshkadam05",
+      "created_at": "2026-11-02T21:02:23.759Z",
+      "updated_at": "2026-11-03T07:52:37.537Z",
+      "max_members": 3
+    }
+  ],
+  "kanban_workspace_members": [
+    {
+      "id": "id_gyeoq0imvzqw1lb",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_email": "vighneshkadam05@gmail.com",
+      "full_name": "vighneshkadam05",
+      "avatar_url": null,
+      "role": "owner",
+      "joined_at": "2026-11-02T21:02:23.759Z"
+    },
+    {
+      "id": "id_tenhjbcmw0cmj6j",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_email": "khandelwalkushal2509@gmail.com",
+      "full_name": "kushal",
+      "avatar_url": null,
+      "role": "collaborator",
+      "joined_at": "2026-11-03T07:10:51.547Z"
+    }
+  ],
+  "kanban_workspace_invitations": [
+    {
+      "id": "id_kvv3evimw0dr5mq",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "workspace_name": "xyz",
+      "inviter_id": "khandelwalkushal2509gmailcom",
+      "inviter_name": "kushal",
+      "invite_token": "af0b117846e58763df6962da3694b6b7",
+      "invite_url": "http://localhost:5173/join/af0b117846e58763df6962da3694b6b7",
+      "invite_code": "AF0B1178",
+      "status": "active",
+      "created_at": "2026-11-03T07:42:26.882Z",
+      "expires_at": "2026-11-10T07:42:26.882Z"
+    },
+    {
+      "id": "id_ke99u66mw0cmyi9",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "workspace_name": "xyz",
+      "inviter_id": "vighneshkadam05gmailcom",
+      "inviter_name": "vighneshkadam05",
+      "invite_token": "c16cd149e62a24a9acd0b92d57ac52f0",
+      "invite_url": "http://localhost:5173/join/c16cd149e62a24a9acd0b92d57ac52f0",
+      "invite_code": "C16CD149",
+      "status": "declined",
+      "created_at": "2026-11-03T07:11:11.409Z",
+      "expires_at": "2026-11-10T07:11:11.409Z"
+    },
+    {
+      "id": "id_kvza655mw0c4tcz",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "workspace_name": "xyz",
+      "inviter_id": "khandelwalkushal2509gmailcom",
+      "inviter_name": "kushal",
+      "invite_token": "eca5ab85b05124a4b757b0447bda83a9",
+      "invite_url": "http://localhost:5173/join/eca5ab85b05124a4b757b0447bda83a9",
+      "invite_code": "ECA5AB85",
+      "status": "used",
+      "created_at": "2026-11-03T06:57:04.931Z",
+      "expires_at": "2026-11-10T06:57:04.931Z",
+      "used_by": "khandelwalkushal2509gmailcom",
+      "used_by_name": "kushal",
+      "used_at": "2026-11-03T07:10:51.547Z"
+    },
+    {
+      "id": "id_ihf1w23mw0b6utn",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "workspace_name": "xyz",
+      "inviter_id": "vighneshkadam05gmailcom",
+      "inviter_name": "vighneshkadam05",
+      "invite_token": "3867c456ca836c489bbf24cf9db3d669",
+      "invite_url": "http://localhost:5173/join/3867c456ca836c489bbf24cf9db3d669",
+      "invite_code": "3867C456",
+      "status": "used",
+      "created_at": "2026-11-03T06:30:40.523Z",
+      "expires_at": "2026-11-10T06:30:40.523Z",
+      "used_by": "khandelwalkushal2509gmailcom",
+      "used_by_name": "kushal",
+      "used_at": "2026-11-03T06:35:14.625Z"
+    },
+    {
+      "id": "id_t7f82fqmvzqypvr",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "workspace_name": "xyz",
+      "inviter_id": "vighneshkadam05gmailcom",
+      "inviter_name": "vighneshkadam05",
+      "invitee_email": "khandelwalkushal2509@gmail.com",
+      "invite_code": "INV-ES1WC9",
+      "status": "used",
+      "created_at": "2026-11-02T21:04:28.551Z",
+      "invite_token": "INV-ES1WC9",
+      "invite_url": "http://localhost:5173/join/INV-ES1WC9",
+      "used_by": "khandelwalkushal2509gmailcom",
+      "used_by_name": "kushal",
+      "used_at": "2026-11-03T06:12:31.179Z"
+    }
+  ],
+  "kanban_workspace_activities": [
+    {
+      "id": "id_05ffspymw0e48te",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 3 members",
+      "created_at": "2026-11-03T07:52:37.538Z"
+    },
+    {
+      "id": "id_y3nw7ejmw0e3ts8",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 2 members",
+      "created_at": "2026-11-03T07:52:18.056Z"
+    },
+    {
+      "id": "id_gfe7do9mw0e3sp2",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 3 members",
+      "created_at": "2026-11-03T07:52:16.646Z"
+    },
+    {
+      "id": "id_gizh4a4mw0e2iif",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "delete_task",
+      "details": "Deleted task \"jhfkjdf\"",
+      "created_at": "2026-11-03T07:51:16.791Z"
+    },
+    {
+      "id": "id_zhwawtcmw0e08nm",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "user",
+      "user_name": "Member",
+      "action": "move_task",
+      "details": "Moved task \"jhfkjdf\" to new column",
+      "created_at": "2026-11-03T07:49:30.706Z"
+    },
+    {
+      "id": "id_5zfjyalmw0e08nl",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "user",
+      "user_name": "Member",
+      "action": "update_task",
+      "details": "Updated task \"jhfkjdf\"",
+      "created_at": "2026-11-03T07:49:30.705Z"
+    },
+    {
+      "id": "id_1mv1m3imw0dzynq",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "update_task",
+      "details": "Updated task \"jhfkjdf\"",
+      "created_at": "2026-11-03T07:49:17.750Z"
+    },
+    {
+      "id": "id_2lbp6c4mw0dzwk2",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "update_task",
+      "details": "Updated task \"jhfkjdf\"",
+      "created_at": "2026-11-03T07:49:15.026Z"
+    },
+    {
+      "id": "id_o9y0qv1mw0dzojx",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "update_task",
+      "details": "Updated task \"jhfkjdf\"",
+      "created_at": "2026-11-03T07:49:04.653Z"
+    },
+    {
+      "id": "id_3mjx4s7mw0dzdyr",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "user",
+      "user_name": "Member",
+      "action": "move_task",
+      "details": "Moved task \"jhfkjdf\" to new column",
+      "created_at": "2026-11-03T07:48:50.931Z"
+    },
+    {
+      "id": "id_5hsqh03mw0dzdyq",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "user",
+      "user_name": "Member",
+      "action": "update_task",
+      "details": "Updated task \"jhfkjdf\"",
+      "created_at": "2026-11-03T07:48:50.930Z"
+    },
+    {
+      "id": "id_06bf9w9mw0dz8wb",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "user",
+      "user_name": "Member",
+      "action": "move_task",
+      "details": "Moved task \"jhfkjdf\" to new column",
+      "created_at": "2026-11-03T07:48:44.363Z"
+    },
+    {
+      "id": "id_oat9rxemw0dz8wa",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "user",
+      "user_name": "Member",
+      "action": "update_task",
+      "details": "Updated task \"jhfkjdf\"",
+      "created_at": "2026-11-03T07:48:44.362Z"
+    },
+    {
+      "id": "id_fzxftthmw0dz5ph",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "user",
+      "user_name": "Member",
+      "action": "move_task",
+      "details": "Moved task \"jhfkjdf\" to new column",
+      "created_at": "2026-11-03T07:48:40.229Z"
+    },
+    {
+      "id": "id_k9rdclgmw0dz5pg",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "user",
+      "user_name": "Member",
+      "action": "update_task",
+      "details": "Updated task \"jhfkjdf\"",
+      "created_at": "2026-11-03T07:48:40.228Z"
+    },
+    {
+      "id": "id_ckw0qa6mw0dz40p",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "create_task",
+      "details": "Created task \"jhfkjdf\" (Assigned to vighneshkadam05)",
+      "created_at": "2026-11-03T07:48:38.041Z"
+    },
+    {
+      "id": "id_b8vgrdxmw0dys87",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "user",
+      "user_name": "Member",
+      "action": "delete_task",
+      "details": "Deleted task \"bvbnv\"",
+      "created_at": "2026-11-03T07:48:22.759Z"
+    },
+    {
+      "id": "id_wp7zuz6mw0dyinr",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "create_task",
+      "details": "Created task \"bvbnv\" (Assigned to vighneshkadam05)",
+      "created_at": "2026-11-03T07:48:10.359Z"
+    },
+    {
+      "id": "id_rbwby6umw0dr5mr",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "invite_user",
+      "details": "Generated shareable collaboration link (Valid for 7 days)",
+      "created_at": "2026-11-03T07:42:26.883Z"
+    },
+    {
+      "id": "id_bg5uykumw0cmyi9",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "invite_user",
+      "details": "Generated shareable collaboration link (Valid for 7 days)",
+      "created_at": "2026-11-03T07:11:11.409Z"
+    },
+    {
+      "id": "id_00ijwhimw0cmj6k",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "join_workspace",
+      "details": "Joined the workspace via shareable invite link",
+      "created_at": "2026-11-03T07:10:51.548Z"
+    },
+    {
+      "id": "id_mvblzkumw0cm009",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "remove_member",
+      "details": "Removed collaborator \"kushal\" from workspace",
+      "created_at": "2026-11-03T07:10:26.697Z"
+    },
+    {
+      "id": "id_9wz7di0mw0c6872",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 4 members",
+      "created_at": "2026-11-03T06:58:10.814Z"
+    },
+    {
+      "id": "id_itnkm0pmw0c4td0",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "invite_user",
+      "details": "Generated shareable collaboration link (Valid for 7 days)",
+      "created_at": "2026-11-03T06:57:04.932Z"
+    },
+    {
+      "id": "id_qpxcb0umw0bcqbm",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "join_workspace",
+      "details": "Joined the workspace via shareable invite link",
+      "created_at": "2026-11-03T06:35:14.626Z"
+    },
+    {
+      "id": "id_hj9fu8bmw0bbw5p",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 3 members",
+      "created_at": "2026-11-03T06:34:35.533Z"
+    },
+    {
+      "id": "id_owb31bemw0bbvzz",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 4 members",
+      "created_at": "2026-11-03T06:34:35.327Z"
+    },
+    {
+      "id": "id_55hz6qtmw0bbvu6",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 5 members",
+      "created_at": "2026-11-03T06:34:35.118Z"
+    },
+    {
+      "id": "id_qg2o61qmw0bbvnf",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 6 members",
+      "created_at": "2026-11-03T06:34:34.875Z"
+    },
+    {
+      "id": "id_c2c5gbsmw0bbufu",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 7 members",
+      "created_at": "2026-11-03T06:34:33.306Z"
+    },
+    {
+      "id": "id_azk6544mw0bbqxf",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 6 members",
+      "created_at": "2026-11-03T06:34:28.755Z"
+    },
+    {
+      "id": "id_9xuyqaumw0bbqek",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 5 members",
+      "created_at": "2026-11-03T06:34:28.076Z"
+    },
+    {
+      "id": "id_gar3kznmw0bboie",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 4 members",
+      "created_at": "2026-11-03T06:34:25.622Z"
+    },
+    {
+      "id": "id_glnb536mw0bbo53",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 3 members",
+      "created_at": "2026-11-03T06:34:25.143Z"
+    },
+    {
+      "id": "id_lvtg1kbmw0bbn3y",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 2 members",
+      "created_at": "2026-11-03T06:34:23.806Z"
+    },
+    {
+      "id": "id_ij28t4tmw0b8mug",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "remove_member",
+      "details": "Removed collaborator \"kushal\" from workspace",
+      "created_at": "2026-11-03T06:32:03.496Z"
+    },
+    {
+      "id": "id_nqej44imw0b7023",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 3 members",
+      "created_at": "2026-11-03T06:30:47.307Z"
+    },
+    {
+      "id": "id_unilz4fmw0b6wvo",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 2 members",
+      "created_at": "2026-11-03T06:30:43.188Z"
+    },
+    {
+      "id": "id_ikm79nimw0b6utn",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "invite_user",
+      "details": "Generated shareable collaboration link (Valid for 7 days)",
+      "created_at": "2026-11-03T06:30:40.523Z"
+    },
+    {
+      "id": "id_aj4kxe3mw0b6utd",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "update_capacity",
+      "details": "Updated workspace capacity limit to 3 members",
+      "created_at": "2026-11-03T06:30:40.513Z"
+    },
+    {
+      "id": "id_j5thzg2mw0ajia4",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "khandelwalkushal2509gmailcom",
+      "user_name": "kushal",
+      "action": "join_workspace",
+      "details": "Joined the workspace via shareable invite link",
+      "created_at": "2026-11-03T06:12:31.180Z"
+    },
+    {
+      "id": "id_j9vanvxmvzqypvs",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "invite_user",
+      "details": "Invited khandelwalkushal2509@gmail.com to collaborate (Code: INV-ES1WC9)",
+      "created_at": "2026-11-02T21:04:28.552Z"
+    },
+    {
+      "id": "id_d16noxomvzqw1lc",
+      "workspace_id": "id_h68hx9hmvzqw1lb",
+      "user_id": "vighneshkadam05gmailcom",
+      "user_name": "vighneshkadam05",
+      "action": "join_workspace",
+      "details": "Created collaborative workspace \"xyz\"",
+      "created_at": "2026-11-02T21:02:23.760Z"
+    }
+  ],
+  "kanban_attachments": []
+}

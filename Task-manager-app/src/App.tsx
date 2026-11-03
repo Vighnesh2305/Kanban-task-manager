@@ -4,6 +4,8 @@ import { LoginPage } from './components/Auth/LoginPage';
 import { RegisterPage } from './components/Auth/RegisterPage';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { BoardView } from './components/Board/BoardView';
+import { WorkspaceView } from './components/Workspace/WorkspaceView';
+import { JoinWorkspacePage } from './components/Workspace/JoinWorkspacePage';
 import { useAuthStore } from './stores/authStore';
 
 // 404 Page Component
@@ -100,6 +102,9 @@ function App() {
           }
         />
 
+        {/* Join Workspace Via Shareable Link */}
+        <Route path="/join/:inviteToken" element={<JoinWorkspacePage />} />
+
         {/* Protected Routes */}
         <Route
           path="/dashboard"
@@ -114,6 +119,14 @@ function App() {
           element={
             <ProtectedRoute>
               <BoardView />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/workspace/:workspaceId"
+          element={
+            <ProtectedRoute>
+              <WorkspaceView />
             </ProtectedRoute>
           }
         />

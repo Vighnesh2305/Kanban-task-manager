@@ -29,8 +29,8 @@ Please be respectful and constructive in all interactions with the project and c
 1. Fork and clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/kanban-supabase.git
-cd kanban-supabase
+git clone https://github.com/YOUR_USERNAME/kanban-task-manager.git
+cd kanban-task-manager
 ```
 
 2. Install dependencies:
@@ -44,7 +44,7 @@ pnpm install
 
 ```bash
 cp .env.example .env.local
-# Edit .env.local with your Supabase credentials
+# Edit environment configuration if needed
 ```
 
 4. Start the development server:
@@ -127,7 +127,7 @@ pnpm test:coverage
 - Place test files in `__tests__` directories next to the code they test
 - Use descriptive test names that explain what is being tested
 - Follow the Arrange-Act-Assert pattern
-- Mock external dependencies (Supabase, APIs, etc.)
+- Mock external dependencies (APIs, storage, etc.)
 
 **Example:**
 
@@ -300,7 +300,7 @@ src/
 
 - 📖 Read the [Documentation](../xiandan-kanban-app/CLAUDE.md)
 - 🧪 Check the [Testing Guide](../xiandan-kanban-app/TESTING.md)
-- 🐛 Search existing [Issues](https://github.com/zhouhao/kanban-supabase/issues)
+- 🐛 Search existing [Issues](https://github.com/zhouhao/kanban-task-manager/issues)
 - 💬 Open a new issue for questions
 
 ## License

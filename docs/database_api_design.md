@@ -515,7 +515,7 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 #### edge-function: send-notification
 ```typescript
-// supabase/functions/send-notification/index.ts
+// server/functions/send-notification/index.ts
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 interface NotificationData {
@@ -542,7 +542,7 @@ serve(async (req) => {
     const { recipient_id, type, title, message, data, email_enabled, in_app_enabled }: NotificationData = await req.json()
     
     // Get user email and notification preferences
-    const userQuery = await supabase
+    const userQuery = await dbClient
       .from('users')
       .select('email, notification_settings')
       .eq('id', recipient_id)
@@ -557,7 +557,7 @@ serve(async (req) => {
 
     // Create in-app notification
     if (in_app_enabled !== false && notification_settings?.in_app) {
-      await supabase
+      await dbClient
         .from('notifications')
         .insert({
           user_id: recipient_id,
@@ -591,7 +591,7 @@ serve(async (req) => {
 
 #### edge-function: calculate-board-stats
 ```typescript
-// supabase/functions/calculate-board-stats/index.ts
+// server/functions/calculate-board-stats/index.ts
 serve(async (req) => {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -607,7 +607,7 @@ serve(async (req) => {
     const targetDate = date || new Date().toISOString().split('T')[0]
 
     // Calculate board statistics
-    const statsQuery = await supabase
+    const statsQuery = await dbClient
       .from('tasks')
       .select(`
         status,
@@ -651,7 +651,7 @@ serve(async (req) => {
     }
 
     // Save statistics
-    await supabase
+    await dbClient
       .from('board_stats')
       .upsert({
         board_id,
@@ -676,7 +676,7 @@ serve(async (req) => {
 
 #### edge-function: bulk-task-operations
 ```typescript
-// supabase/functions/bulk-task-operations/index.ts
+// server/functions/bulk-task-operations/index.ts
 interface BulkOperation {
   action: 'move' | 'update' | 'archive' | 'delete'
   task_ids: string[]
@@ -707,7 +707,7 @@ serve(async (req) => {
           }
           // Batch move tasks
           for (let i = 0; i < task_ids.length; i++) {
-            await supabase
+            await dbClient
               .from('tasks')
               .update({
                 column_id: data.column_id,
@@ -721,7 +721,7 @@ serve(async (req) => {
         case 'update':
           // Batch update task attributes
           for (const task_id of task_ids) {
-            await supabase
+            await dbClient
               .from('tasks')
               .update({
                 ...data,
@@ -734,7 +734,7 @@ serve(async (req) => {
         case 'archive':
           // Batch archive tasks
           for (const task_id of task_ids) {
-            await supabase
+            await dbClient
               .from('tasks')
               .update({
                 is_archived: true,
@@ -747,7 +747,7 @@ serve(async (req) => {
         case 'delete':
           // Batch delete tasks (soft delete)
           for (const task_id of task_ids) {
-            await supabase
+            await dbClient
               .from('tasks')
               .delete()
               .eq('id', task_id)
@@ -775,7 +775,7 @@ serve(async (req) => {
 
 #### edge-function: generate-board-report
 ```typescript
-// supabase/functions/generate-board-report/index.ts
+// server/functions/generate-board-report/index.ts
 serve(async (req) => {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -790,7 +790,7 @@ serve(async (req) => {
     const { board_id, period = 'week', format = 'json' } = await req.json()
     
     // Get board basic information
-    const boardQuery = await supabase
+    const boardQuery = await dbClient
       .from('boards')
       .select('title, description, created_at')
       .eq('id', board_id)
@@ -816,7 +816,7 @@ serve(async (req) => {
     }
 
     // Get statistics data
-    const statsQuery = await supabase
+    const statsQuery = await dbClient
       .from('board_stats')
       .select('*')
       .eq('board_id', board_id)

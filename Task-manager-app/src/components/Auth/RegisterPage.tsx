@@ -37,7 +37,13 @@ export const RegisterPage = () => {
 
     const result = await signUp(email, password, username);
     if (result.success) {
-      navigate('/dashboard');
+      const redirect = localStorage.getItem('auth_redirect');
+      if (redirect) {
+        localStorage.removeItem('auth_redirect');
+        navigate(redirect);
+      } else {
+        navigate('/dashboard');
+      }
     } else {
       setError(result.error || 'Registration failed');
     }
